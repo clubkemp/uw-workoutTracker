@@ -3,5 +3,4 @@
 module.exports = {
   Drill: require("./Drill"),
   Workout: require("./Workout")
-
 };
