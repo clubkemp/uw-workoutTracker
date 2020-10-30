@@ -19,6 +19,8 @@ mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/workout-tracker
 //controller routes
 const apiRoutes = require('./controllers/apiController.js')
 app.use(apiRoutes)
+const appRoutes = require('./controllers/appController.js')
+app.use(appRoutes)
 
 //handlebars
 app.engine("handlebars", exphbs({ defaultLayout: "main", }));
