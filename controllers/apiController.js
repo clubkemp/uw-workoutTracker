@@ -9,7 +9,6 @@ router.get("/api/workouts", (req, res) => {
         res.json(data)
     })
 });
-
 router.get("/api/drills", (req, res) => {
     db.Drill.find({}, (err, data) =>{
         if (err) throw err
