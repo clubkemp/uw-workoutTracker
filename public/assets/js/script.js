@@ -1,6 +1,22 @@
+$('.add-exercise').on("click", function (){
+    console.log("Addworkout");
+    const input = $('.create-workout-input').val().trim()
+    const data = {
+        name:input
+    }
+    $.ajax({
+        url:"/createworkout",
+        type:"POST",
+        data:data,
+        success: function(data) {
+            console.log(`successfully sent ${data}`)
+        }
+    })
+})
 
 window.addEventListener('load', function(){
-    new Glider(document.querySelector('.glider'), {
+    const sliders = document.querySelectorAll('.glider') 
+    const options = {
         // Mobile-first defaults
         slidesToShow: 1,
         slidesToScroll: 1,
@@ -46,5 +62,10 @@ window.addEventListener('load', function(){
             }
             }
         ]
+    };
+    
+    sliders.forEach(item => {
+        console.log(item)
+        const glider = new Glider(item, options)
     })
-  })
+})
