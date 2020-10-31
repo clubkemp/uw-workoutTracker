@@ -4,9 +4,13 @@ const db = require("../models");
 
 
 router.get("/api/workouts", (req, res) => {
-    db.Workout.find({}, (err, data) =>{
-        if (err) throw err
+    db.Workout.find({})
+    .populate("drill")
+    .then(data =>{
         res.json(data)
+    })
+    .catch(err =>{
+        throw err
     })
 });
 router.get("/api/drills", (req, res) => {
