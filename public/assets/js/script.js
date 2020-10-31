@@ -1,6 +1,7 @@
-
 window.addEventListener('load', function(){
-    new Glider(document.querySelector('.glider'), {
+    const sliders = document.querySelectorAll('.glider')
+    
+    const options = {
         // Mobile-first defaults
         slidesToShow: 1,
         slidesToScroll: 1,
@@ -46,5 +47,10 @@ window.addEventListener('load', function(){
             }
             }
         ]
+    };
+    
+    sliders.forEach(item => {
+        console.log(item)
+        const glider = new Glider(item, options)
     })
-  })
+})
