@@ -14,6 +14,11 @@ $('.add-exercise').on("click", function (){
     })
 })
 
+
+$(document).ready(function(){
+    $('.modal').modal();
+  });
+
 window.addEventListener('load', function(){
     const sliders = document.querySelectorAll('.glider') 
     const options = {
