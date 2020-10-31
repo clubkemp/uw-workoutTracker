@@ -9,3 +9,6 @@ body{
 .l-box {
     padding: 1em;
 }
+#edit{
+    display: inline-block;
+}
