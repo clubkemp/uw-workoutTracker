@@ -1,42 +1,53 @@
 <div class="row">
-    <div class="col-6">
-        <h1>workout bruh</h1>
-        <a class="btn-floating btn-large waves-effect waves-light red"><i class="material-icons">add</i></a>
+    <div class="col">
+        <h1>Fitness tracker</h1>
     </div>
 </div>
-<div class="row workout">
-    <div class="col-6 ">
-        <div class="glider-contain">
-                <h3>Workout name</h3> 
-            <br>
-            <a class="waves-effect waves-light btn">New Exercise</a>
-            <div class="glider">
-                <div class="row drill">
-                    <div class="col s12">
-                    <div class="card-panel teal">
-                        <h5 class="white-text">Exercise Title</h5>
-                        <span class="white-text">
-                            <ul>
-                                <li>name: String,</li>
-                                <li>type: String,</li>
-                                <li>location: String,</li>
-                                <li>duration: String,</li>
-                                <li>weight: Number,</li>
-                                <li>sets: Number,</li>
-                                <li>reps: Number,</li>
-                                <li>distance:Number</li>
-                            </ul>
-                        </span>
-                        <br>
-                        <a class="waves-effect waves-teal btn-flat">Edit</a>
-                        <a class="waves-effect waves-teal btn-flat">delete</a>
-                    </div>
+<div class="row">
+    <a class="btn-floating btn-large waves-effect waves-light red col-1 add-exercise"><i class="material-icons">add</i></a>
+    <div class="input-field col s6">
+        <input placeholder="Hella cardio" type="text" class="create-workout-input">
+        <label for="first_name">Create a new workout</label>
+    </div>
+</div>
+{{#each workout}}
+    <div class="row workout">
+        <div class="row">
+            <div class="col">
+                <h3>{{name}}</h3>
+            </div>
+        </div>
+        <div class="col-6 ">
+            <div class="glider-contain">
+                <a class="waves-effect waves-light btn">New Exercise</a>
+                <div class="glider">
+                    <div class="row drill">
+                        <div class="col s12">
+                        <div class="card-panel teal">
+                            <h5 class="white-text">Exercise Title</h5>
+                            <span class="white-text">
+                                <ul>
+                                    <li>name: String,</li>
+                                    <li>type: String,</li>
+                                    <li>location: String,</li>
+                                    <li>duration: String,</li>
+                                    <li>weight: Number,</li>
+                                    <li>sets: Number,</li>
+                                    <li>reps: Number,</li>
+                                    <li>distance:Number</li>
+                                </ul>
+                            </span>
+                            <br>
+                            <a class="waves-effect waves-teal btn-flat">Edit</a>
+                            <a class="waves-effect waves-teal btn-flat">delete</a>
+                        </div>
+                        </div>
                     </div>
                 </div>
+                <button aria-label="Previous" class="glider-prev">«</button>
+                <button aria-label="Next" class="glider-next">»</button>
+                <div role="tablist" class="dots"></div>
             </div>
-            <button aria-label="Previous" class="glider-prev">«</button>
-            <button aria-label="Next" class="glider-next">»</button>
-            <div role="tablist" class="dots"></div>
-        </div>
-    </div> 
-</div>
+        </div> 
+    </div>
+{{/each}}
