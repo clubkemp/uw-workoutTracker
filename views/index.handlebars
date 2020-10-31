@@ -11,7 +11,7 @@
     </div>
 </div>
 {{#each workout}}
-    <div class="row workout">
+    <div class="row workout" id={{_id}}>
         <div class="row">
             <div class="col">
                 <h3>{{name}}</h3>
@@ -20,30 +20,32 @@
         <div class="col-6 ">
             <div class="glider-contain">
                 <a class="waves-effect waves-light btn">New Exercise</a>
-                <div class="glider">
-                    <div class="row drill">
-                        <div class="col s12">
-                        <div class="card-panel teal">
-                            <h5 class="white-text">Exercise Title</h5>
-                            <span class="white-text">
-                                <ul>
-                                    <li>name: String,</li>
-                                    <li>type: String,</li>
-                                    <li>location: String,</li>
-                                    <li>duration: String,</li>
-                                    <li>weight: Number,</li>
-                                    <li>sets: Number,</li>
-                                    <li>reps: Number,</li>
-                                    <li>distance:Number</li>
-                                </ul>
-                            </span>
-                            <br>
-                            <a class="waves-effect waves-teal btn-flat">Edit</a>
-                            <a class="waves-effect waves-teal btn-flat">delete</a>
-                        </div>
+                {{#each drill}}
+                    <div class="glider drill" id={{_id}}>
+                        <div class="row">
+                            <div class="col s12">
+                            <div class="card-panel teal">
+                                <h5 class="white-text">{{name}}</h5>
+                                <span class="white-text">
+                                    <ul>
+                                        <li>type:{{type}},</li>
+                                        <li>location: {{location}},</li>
+                                        <li>duration: {{duration}},</li>
+                                        <li>weight: {{weight}},</li>
+                                        <li>sets: {{sets}},</li>
+                                        <li>reps: {{reps}},</li>
+                                        <li>distance:{{distance}}</li>
+                                    </ul>
+                                    {{!-- <a><i class="material-icons">add</i></a> --}}
+                                </span>
+                                <br>
+                                <a class="waves-effect waves-teal btn-flat modal-trigger editBtn" href="#modal1" data-id={{_id}}>Edit</a>
+                                <a class="waves-effect waves-teal btn-flat deleteBtn" data-id={{_id}}>delete</a>
+                            </div>
+                            </div>
                         </div>
                     </div>
-                </div>
+                {{/each}}
                 <button aria-label="Previous" class="glider-prev">«</button>
                 <button aria-label="Next" class="glider-next">»</button>
                 <div role="tablist" class="dots"></div>
