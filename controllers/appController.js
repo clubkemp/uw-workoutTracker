@@ -5,6 +5,7 @@ const db = require("../models");
 
 router.get("/", (req, res) => {
    db. Workout.find({})
+   .populate("drill")
    .then(data =>{
       const JSONdata = data.map(e=>{
          return e.toJSON()
@@ -12,6 +13,7 @@ router.get("/", (req, res) => {
       const hbsObj = {
          workout: JSONdata
       }
+      console.log(hbsObj)
       res.render("index", hbsObj)
    })
    .catch(err =>{
