@@ -2,7 +2,4 @@ body{
     background-color: paleturquoise
 }
 
-.container{
-    display: flexbox;
-    justify-content: space-around;
-}
+
