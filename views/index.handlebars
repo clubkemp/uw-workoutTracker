@@ -4,7 +4,7 @@
     </div>
 </div>
 <div class="row">
-    <a class="btn-floating btn-large waves-effect waves-light red col-1 add-exercise"><i class="material-icons">add</i></a>
+    <a class="btn-floating btn-large waves-effect waves-light red col-1 create-workout"><i class="material-icons">add</i></a>
     <div class="input-field col s6">
         <input placeholder="Hella cardio" type="text" class="create-workout-input">
         <label for="first_name">Create a new workout</label>
@@ -19,7 +19,7 @@
         </div>
         <div class="col-6 ">
             <div class="glider-contain">
-                <a class="waves-effect waves-light btn">New Exercise</a>
+                <a class="waves-effect waves-light btn create-drill" data-workoutid={{_id}}>New Exercise</a>
                 {{#each drill}}
                     <div class="glider drill" id={{_id}}>
                         <div class="row">
@@ -28,7 +28,7 @@
                                 <h5 class="white-text">{{name}}</h5>
                                 <span class="white-text">
                                     <ul>
-                                        <li>type:{{type}},</li>
+                                        <li>type: {{type}},</li>
                                         <li>location: {{location}},</li>
                                         <li>duration: {{duration}},</li>
                                         <li>weight: {{weight}},</li>
@@ -39,8 +39,8 @@
                                     {{!-- <a><i class="material-icons">add</i></a> --}}
                                 </span>
                                 <br>
-                                <a class="waves-effect waves-teal btn-flat modal-trigger editBtn" href="#modal1" data-id={{_id}}>Edit</a>
-                                <a class="waves-effect waves-teal btn-flat deleteBtn" data-id={{_id}}>delete</a>
+                                <a class="waves-effect waves-teal btn-flat modal-trigger edit-drill" data-drillid={{_id}}>Edit</a>
+                                <a class="waves-effect waves-teal btn-flat deleteBtn" data-drillid={{_id}}>delete</a>
                             </div>
                             </div>
                         </div>

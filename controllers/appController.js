@@ -51,5 +51,32 @@ router.post("/createworkout", async (req, res) =>{
    })
 })
 
+router.post("/createdrill", (req, res) =>{
+   console.log(req.body);
+   const workoutId = req.body.workoutId
+   console.log(workoutId)
+   // db.Drill.create({
+   //    name: "exercise name?",
+   //    type: "what are you doing?",
+   //    location: "place of exercise?",
+   //    duration: "in hrs?",
+   //    weight: 0,
+   //    sets: 0,
+   //    reps: 0,
+   //    distance:0
+   //  })
+    .then(drill =>{
+      console.log(`${drill._id}`)
+      db.Workout.findByIdAndUpdate(workoutId, { $push: { drill: drill._id } }, { new: true })
+      .then((result =>{
+         console.log(result)
+      }))
+      res.status(200).send("Workout created")
+   })
+   .catch(err =>{
+      res.status(500).send(err)
+   })
+})
+
 
 module.exports = router;

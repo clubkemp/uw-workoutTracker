@@ -1,4 +1,4 @@
-$('.add-exercise').on("click", function (){
+$('.create-workout').on("click", function (){
     console.log("Addworkout");
     const input = $('.create-workout-input').val().trim()
     const data = {
@@ -13,7 +13,65 @@ $('.add-exercise').on("click", function (){
         }
     })
 })
+$('.create-drill').on("click", function (){
+    const workoutId = $(this).attr('data-workoutid')
+    $('.save-drill').removeAttr('data-drillId') 
+    $('.save-drill').attr('data-workoutId', workoutId)
+    $('#name').val("")
+    $('#type').val("")
+    $('#location').val("")
+    $('#duration').val("")
+    $('#weight').val("")
+    $('#sets').val("")
+    $('#reps').val("")
+    $('#distance').val("")
+    $('.modal').modal('open');
+})
 
+$('.edit-drill').on("click", function (){
+    const drillId = $(this).attr('data-drillid')
+    $.ajax({
+        url:`/api/drills/${drillId}`,
+        type:"GET",
+        success: function(data) {
+            $('#name').val(data.name)
+            $('#type').val(data.type)
+            $('#location').val(data.location)
+            $('#duration').val(data.duration)
+            $('#weight').val(data.weight)
+            $('#sets').val(data.sets)
+            $('#reps').val(data.reps)
+            $('#distance').val(data.distance)
+            console.log(data)
+        }
+    })
+    $('.save-drill').removeAttr('data-workoutId') 
+    $('.save-drill').attr('data-drillId', drillId)
+
+    $('.modal').modal('open');
+})
+$('.save-drill').on("click", function (){
+    const drill = {
+        name: $('#name').val(),
+        type: $('#type').val(),
+        location: $('#location').val(),
+        duration: $('#duration').val(),
+        weight: $('#weight').val(),
+        sets: $('#sets').val(),
+        reps: $('#reps').val(),
+        distance: $('#distance').val()
+    }
+    console.log(drill)
+    
+    if($(this).attr('data-drillId')){
+        drill.drillid = $(this).attr('data-drillId')
+        console.log("updating", $(this).attr('data-drillId'))
+    }else{
+        drill.workoutid =  $(this).attr('data-workoutId')
+        console.log("creating drill for ", $(this).attr('data-workoutId'))
+    }
+    
+})
 
 $(document).ready(function(){
     $('.modal').modal();
