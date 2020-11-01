@@ -1,8 +1,4 @@
-body{
-    background-color: paleturquoise
-}
-
-.workout {
-    display: flexbox;
-    justify-content: space-around;
-}
+/* @media screen and (max-width: 500){
+  .container
+    width: 98%
+} */
