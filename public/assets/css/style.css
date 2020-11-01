@@ -2,4 +2,7 @@ body{
     background-color: paleturquoise
 }
 
-
+.workout {
+    display: flexbox;
+    justify-content: space-around;
+}
