@@ -4,7 +4,7 @@
     </div>
 </div>
 <div class="row">
-    <a class="btn-floating btn-large waves-effect waves-light red col-1 create-workout"><i class="material-icons">add</i></a>
+    <a class="btn-floating btn-large waves-effect waves-light yellow col-1 create-workout"><i class="material-icons">add</i></a>
     <div class="input-field col s6">
         <input placeholder="Hella cardio" type="text" class="create-workout-input">
         <label for="first_name">Create a new workout</label>
@@ -13,37 +13,39 @@
 {{#each workout}}
     <div class="divider"></div>
     <div class="section">
-        <div class="row" id={{_id}}>
+        <div class="row workout" id={{_id}}>
             <div class="col-12">
                 <div class="row">
                     <div class="col">
                         <h3>{{name}}</h3>
-                        <a class="waves-effect waves-light btn create-drill" data-workoutid={{_id}}>New Exercise</a>
+                        <a class="waves-effect waves-light btn create-drill yellow black-text" data-workoutid={{_id}}>New Exercise</a>
 
                     </div>
                 </div>
-            </div>
-            {{#each drill}} 
-            <div class="col">
-            <div class="card-panel teal">
-                    <h5 class="white-text">{{name}}</h5>
-                    <span class="white-text">
-                        <ul>
-                            <li>type: {{type}},</li>
-                            <li>location: {{location}},</li>
-                            <li>duration: {{duration}},</li>
-                            <li>weight: {{weight}},</li>
-                            <li>sets: {{sets}},</li>
-                            <li>reps: {{reps}},</li>
-                            <li>distance:{{distance}}</li>
-                        </ul>
-                    </span>
-                    <br>
-                    <a class="waves-effect waves-teal btn-flat modal-trigger edit-drill" data-drillid={{_id}}>Edit</a>
-                    <a class="waves-effect waves-teal btn-flat deleteBtn" data-drillid={{_id}}>delete</a>
+                <div class="row">
+                {{#each drill}} 
+                <div class="col s12 m5">
+                    <div class="card-panel teal">
+                        <h5 class="white-text">{{name}}</h5>
+                        <span class="white-text">
+                            <ul>
+                                <li>type: {{type}},</li>
+                                <li>location: {{location}},</li>
+                                <li>duration: {{duration}} minutes</li>
+                                <li>weight: {{weight}},</li>
+                                <li>sets: {{sets}},</li>
+                                <li>reps: {{reps}},</li>
+                                <li>distance:{{distance}}</li>
+                            </ul>
+                        </span>
+                        <br>
+                        <a class="waves-effect waves-teal btn-flat modal-trigger edit-drill blue" data-drillid={{_id}}>Edit</a>
+                        <a class="waves-effect waves-teal btn-flat delete-drill orange" data-drillid={{_id}}>delete</a>
+                    </div>
                 </div>
+                {{/each}}  
             </div>
-            {{/each}}      
+            </div>    
         </div>
     </div>
     

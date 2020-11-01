@@ -13,7 +13,6 @@ router.get("/", (req, res) => {
       const hbsObj = {
          workout: JSONdata
       }
-      console.log(hbsObj)
       res.render("index", hbsObj)
    })
    .catch(err =>{
@@ -50,30 +49,40 @@ router.post("/createworkout", async (req, res) =>{
       res.status(500).send(err)
    })
 })
+router.put("/updatedrill",(req,res) =>{
+   const drillData = req.body.data
+   const drillId = req.body.drillId
+   console.log(req.body)
+   console.log(drillData);
+   console.log(drillId)
+   db.Drill.findByIdAndUpdate(drillId, drillData,{new:true})
+   .then((result =>{
+      res.status(200).send("exercise updated")
+   }))
+})
 
 router.post("/createdrill", (req, res) =>{
-   console.log(req.body);
-   const {name, type, location, duration, weight, sets, reps, distance} = req.body
+   const drillData = req.body.data
    const workoutId = req.body.workoutId
-   console.log(workoutId)
-   db.Drill.create({
-      name,
-      type,
-      location,
-      duration,
-      weight,
-      sets,
-      reps,
-      distance
-    })
+   db.Drill.create(drillData)
     .then(drill =>{
-      console.log(`${drill._id}`)
       db.Workout.findByIdAndUpdate(workoutId, { $push: { drill: drill._id } }, { new: true })
       .then((result =>{
-         console.log(result)
+         res.status(200).send("exercise created")
       }))
-      res.status(200).send("Workout created")
+      
    })
+   .catch(err =>{
+      res.status(500).send(err)
+   })
+})
+
+router.delete("/deletedrill/:id", (req,res) =>{
+   console.log(req.params.id)
+   db.Drill.findByIdAndDelete(req.params.id)
+   .then((result =>{
+      res.status(200).send("exercise delete")
+   }))
    .catch(err =>{
       res.status(500).send(err)
    })
