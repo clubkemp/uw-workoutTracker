@@ -11,47 +11,42 @@
     </div>
 </div>
 {{#each workout}}
-    <div class="row workout" id={{_id}}>
-        <div class="row">
-            <div class="col">
-                <h3>{{name}}</h3>
-            </div>
-        </div>
-        <div class="col-6 ">
-            <div class="glider-contain row">
-                <a class="waves-effect waves-light btn create-drill" data-workoutid={{_id}}>New Exercise</a>
-                    <div class="glider">
-                       {{#each drill}} 
-                        <div class="row drill">
-                            <div class="col">
-                            <div class="card-panel teal">
-                                    <h5 class="white-text">{{name}}</h5>
-                                    <span class="white-text">
-                                        <ul>
-                                            <li>type: {{type}},</li>
-                                            <li>location: {{location}},</li>
-                                            <li>duration: {{duration}},</li>
-                                            <li>weight: {{weight}},</li>
-                                            <li>sets: {{sets}},</li>
-                                            <li>reps: {{reps}},</li>
-                                            <li>distance:{{distance}}</li>
-                                        </ul>
-                                        {{!-- <a><i class="material-icons">add</i></a> --}}
-                                    </span>
-                                    <br>
-                                    <a class="waves-effect waves-teal btn-flat modal-trigger edit-drill" data-drillid={{_id}}>Edit</a>
-                                    <a class="waves-effect waves-teal btn-flat deleteBtn" data-drillid={{_id}}>delete</a>
-                                </div>
-                            </div>
-                        </div>
-                        {{/each}}
-                    </div>
+    <div class="divider"></div>
+    <div class="section">
+        <div class="row" id={{_id}}>
+            <div class="col-12">
+                <div class="row">
+                    <div class="col">
+                        <h3>{{name}}</h3>
+                        <a class="waves-effect waves-light btn create-drill" data-workoutid={{_id}}>New Exercise</a>
 
-                
-                <button aria-label="Previous" class="glider-prev">«</button>
-                <button aria-label="Next" class="glider-next">»</button>
-                <div role="tablist" class="dots"></div>
+                    </div>
+                </div>
             </div>
-        </div> 
+            {{#each drill}} 
+            <div class="col">
+            <div class="card-panel teal">
+                    <h5 class="white-text">{{name}}</h5>
+                    <span class="white-text">
+                        <ul>
+                            <li>type: {{type}},</li>
+                            <li>location: {{location}},</li>
+                            <li>duration: {{duration}},</li>
+                            <li>weight: {{weight}},</li>
+                            <li>sets: {{sets}},</li>
+                            <li>reps: {{reps}},</li>
+                            <li>distance:{{distance}}</li>
+                        </ul>
+                    </span>
+                    <br>
+                    <a class="waves-effect waves-teal btn-flat modal-trigger edit-drill" data-drillid={{_id}}>Edit</a>
+                    <a class="waves-effect waves-teal btn-flat deleteBtn" data-drillid={{_id}}>delete</a>
+                </div>
+            </div>
+            {{/each}}      
+        </div>
     </div>
+    
 {{/each}}
+        </div>
+        
