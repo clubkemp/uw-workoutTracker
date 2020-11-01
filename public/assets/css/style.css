@@ -1,14 +1,5 @@
 body{
-    background-color: paleturquoise;
+    background-color: paleturquoise
 }
-.pure-g > div {
-    display: flex;
-    justify-content: center;
-    box-sizing: border-box;
-}
-.l-box {
-    padding: 1em;
-}
-#edit{
-    display: inline-block;
-}
+
+

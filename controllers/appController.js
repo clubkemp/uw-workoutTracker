@@ -31,7 +31,7 @@ router.post("/createworkout", async (req, res) =>{
          name: "exercise name?",
          type: "what are you doing?",
          location: "place of exercise?",
-         duration: "in hrs?",
+         duration: 0,
          weight: 0,
          sets: 0,
          reps: 0,
@@ -45,6 +45,34 @@ router.post("/createworkout", async (req, res) =>{
          }))
          res.status(200).send("Workout created")
       })
+   })
+   .catch(err =>{
+      res.status(500).send(err)
+   })
+})
+
+router.post("/createdrill", (req, res) =>{
+   console.log(req.body);
+   const {name, type, location, duration, weight, sets, reps, distance} = req.body
+   const workoutId = req.body.workoutId
+   console.log(workoutId)
+   db.Drill.create({
+      name,
+      type,
+      location,
+      duration,
+      weight,
+      sets,
+      reps,
+      distance
+    })
+    .then(drill =>{
+      console.log(`${drill._id}`)
+      db.Workout.findByIdAndUpdate(workoutId, { $push: { drill: drill._id } }, { new: true })
+      .then((result =>{
+         console.log(result)
+      }))
+      res.status(200).send("Workout created")
    })
    .catch(err =>{
       res.status(500).send(err)

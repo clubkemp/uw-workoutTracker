@@ -1,4 +1,5 @@
-$('.add-exercise').on("click", function (){
+
+$('.create-workout').on("click", function (){
     console.log("Addworkout");
     const input = $('.create-workout-input').val().trim()
     const data = {
@@ -13,20 +14,96 @@ $('.add-exercise').on("click", function (){
         }
     })
 })
+$('.create-drill').on("click", function (){
+    const workoutId = $(this).attr('data-workoutid')
+    $('.save-drill').removeAttr('data-drillId') 
+    $('.save-drill').attr('data-workoutId', workoutId)
+    $('#name').val("")
+    $('#type').val("")
+    $('#location').val("")
+    $('#duration').val("")
+    $('#weight').val("")
+    $('#sets').val("")
+    $('#reps').val("")
+    $('#distance').val("")
+    $('.modal').modal('open');
+})
 
+$('.edit-drill').on("click", function (){
+    const drillId = $(this).attr('data-drillid')
+    $.ajax({
+        url:`/api/drills/${drillId}`,
+        type:"GET",
+        success: function(data) {
+            $('#name').val(data.name)
+            $('#type').val(data.type)
+            $('#location').val(data.location)
+            $('#duration').val(data.duration)
+            $('#weight').val(data.weight)
+            $('#sets').val(data.sets)
+            $('#reps').val(data.reps)
+            $('#distance').val(data.distance)
+            console.log(data)
+        }
+    })
+    $('.save-drill').removeAttr('data-workoutId') 
+    $('.save-drill').attr('data-drillId', drillId)
+
+    $('.modal').modal('open');
+})
+$('.save-drill').on("click", function (){
+    const drill = {
+        name: $('#name').val(),
+        type: $('#type').val(),
+        location: $('#location').val(),
+        duration: $('#duration').val(),
+        weight: $('#weight').val(),
+        sets: $('#sets').val(),
+        reps: $('#reps').val(),
+        distance: $('#distance').val()
+    }
+    console.log(drill)
+    
+    if($(this).attr('data-drillId')){
+        drill.drillId = $(this).attr('data-drillId')
+        console.log("updating", $(this).attr('data-drillId'))
+        $.ajax({
+            url:"/createworkout",
+            type:"PUT",
+            data:drill,
+            success: function(data) {
+                console.log(`successfully sent ${data}`)
+            }
+        })
+    }else{
+        drill.workoutId =  $(this).attr('data-workoutId')
+        console.log("creating drill for ", $(this).attr('data-workoutId'))
+        $.ajax({
+            url:"/createdrill",
+            type:"POST",
+            data:drill,
+            success: function(data) {
+                console.log(`successfully sent ${data}`)
+            }
+        })
+    }
+    
+})
 
 $(document).ready(function(){
     $('.modal').modal();
+    
   });
 
 window.addEventListener('load', function(){
     const sliders = document.querySelectorAll('.glider') 
+    
     const options = {
         // Mobile-first defaults
         slidesToShow: 1,
         slidesToScroll: 1,
         scrollLock: true,
-        dots: '#resp-dots',
+        dots: '.dots',
         arrows: {
             prev: '.glider-prev',
             next: '.glider-next'
@@ -41,7 +118,6 @@ window.addEventListener('load', function(){
                     slidesToScroll: 1,
                     itemWidth: 150,
                     duration: 0.25,
-                    dots: '.dots',
                 }
             },
             {
@@ -53,7 +129,6 @@ window.addEventListener('load', function(){
                 slidesToScroll: 1,
                 itemWidth: 150,
                 duration: 0.25,
-                dots: '.dots',
             }
             },{
             // screens greater than >= 1024px
@@ -63,14 +138,12 @@ window.addEventListener('load', function(){
                 slidesToScroll: 1,
                 itemWidth: 150,
                 duration: 0.25,
-                dots: '.dots',
             }
             }
         ]
     };
-    
+    console.log(sliders )
     sliders.forEach(item => {
-        console.log(item)
         const glider = new Glider(item, options)
     })
 })

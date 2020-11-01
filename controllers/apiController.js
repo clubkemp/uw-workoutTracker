@@ -19,6 +19,12 @@ router.get("/api/drills", (req, res) => {
         res.json(data)
     })
 });
+router.get("/api/drills/:id", (req, res) => {
+    db.Drill.findOne({_id:req.params.id}, (err, data) =>{
+        if (err) throw err
+        res.json(data)
+    })
+});
 
 router.post("/api/create/workout/:name", (req, res) =>{
     db.Workout.create([{name:req.params.name}], (err, data)=>{
