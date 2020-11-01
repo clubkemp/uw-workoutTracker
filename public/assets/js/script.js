@@ -10,6 +10,7 @@ $('.create-workout').on("click", function (){
         type:"POST",
         data:data,
         success: function(data) {
+            window.location.href = "/"
             console.log(`successfully sent ${data}`)
         }
     })
@@ -53,6 +54,7 @@ $('.edit-drill').on("click", function (){
 })
 $('.save-drill').on("click", function (){
     const drill = {
+        data:{
         name: $('#name').val(),
         type: $('#type').val(),
         location: $('#location').val(),
@@ -61,6 +63,7 @@ $('.save-drill').on("click", function (){
         sets: $('#sets').val(),
         reps: $('#reps').val(),
         distance: $('#distance').val()
+        }
     }
     console.log(drill)
     
@@ -68,11 +71,12 @@ $('.save-drill').on("click", function (){
         drill.drillId = $(this).attr('data-drillId')
         console.log("updating", $(this).attr('data-drillId'))
         $.ajax({
-            url:"/createworkout",
+            url:"/updatedrill",
             type:"PUT",
             data:drill,
             success: function(data) {
-                console.log(`successfully sent ${data}`)
+                window.location.href = "/"
+                console.log(data)
             }
         })
     }else{
@@ -83,11 +87,26 @@ $('.save-drill').on("click", function (){
             type:"POST",
             data:drill,
             success: function(data) {
-                console.log(`successfully sent ${data}`)
+                window.location.href = "/"
+                console.log(data)
             }
         })
     }
     
+})
+
+$('.delete-drill').on("click", function (){
+    const drillId = $(this).attr('data-drillid')
+ 
+    console.log(drillId)
+    $.ajax({
+        url:`/deletedrill/${drillId}`,
+        type:"DELETE",
+        success: function(data) {
+            window.location.href = "/"
+            console.log(data)
+        }
+    })
 })
 
 $(document).ready(function(){
