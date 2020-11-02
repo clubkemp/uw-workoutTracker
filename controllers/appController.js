@@ -2,17 +2,23 @@ const express = require("express");
 const router = express.Router();
 const db = require("../models");
 
-
+//Only route for displaying data
 router.get("/", (req, res) => {
+   // it all starts by finding workouts, these workouts have drill associations
+   // we sort by created at so the newest stuff floats to the top
    db. Workout.find({}).sort({createdAt:-1})
+   // the magic, we populate the drill reference with the drill documents
    .populate("drill")
    .then(data =>{
+      // JSONIFY the data restuls
       const JSONdata = data.map(e=>{
          return e.toJSON()
       })
+      // setup that data to pass into handlebars
       const hbsObj = {
          workout: JSONdata
       }
+      // render the index page with our array of workouts (with drills inside each workout)
       res.render("index", hbsObj)
    })
    .catch(err =>{
@@ -20,12 +26,16 @@ router.get("/", (req, res) => {
    })
 });
 
-router.post("/createworkout", async (req, res) =>{
+// creating a workout
+router.post("/createworkout", (req, res) =>{
+   // setup the wokrout id in the function scope to reference further down
    let workoutId
+   // create the workout with the req.body (just a name)
    db.Workout.create([req.body])
    .then(workout =>{
+      // set thew workout id from the result so we can use later 
       workoutId = workout[0]._id
-      console.log(`workoutid ${workoutId}`)
+      // create a template starter drill to go inside the workout
       db.Drill.create({
          name: "My first Exercise",
          type: "Warmup",
@@ -35,18 +45,20 @@ router.post("/createworkout", async (req, res) =>{
          tags:["warmup", "yoga", "feel-good"]
        })
        .then(drill =>{
-         console.log(`${drill._id}`)
+         // now take the drill we just made, and instantly associate it with our workoutId
          db.Workout.findByIdAndUpdate(workoutId, { $push: { drill: drill._id } }, { new: true })
          .then((result =>{
-            console.log(result)
+            res.status(200).send("Workout created")
          }))
-         res.status(200).send("Workout created")
+         
       })
    })
    .catch(err =>{
       res.status(500).send(err)
    })
 })
+
+// update a drill
 router.put("/updatedrill",(req,res) =>{
    const drillData = req.body.data
    const drillId = req.body.drillId
