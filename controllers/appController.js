@@ -4,7 +4,7 @@ const db = require("../models");
 
 
 router.get("/", (req, res) => {
-   db. Workout.find({})
+   db. Workout.find({}).sort({createdAt:-1})
    .populate("drill")
    .then(data =>{
       const JSONdata = data.map(e=>{
