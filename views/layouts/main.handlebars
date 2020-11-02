@@ -20,53 +20,35 @@
         <div id="modal1" class="modal">
             <div class="modal-content">
                 <div class="row">
-                    Name:
-                    <div class="input-field inline">
-                        <input id="name" name="name" type="text">
+                    <div class="input-field col s12 m6">
+                        <input placeholder="Chest burner"id="name" type="text" class="validate">
+                        <label for="name">Name</label>
+                    </div>
+                    <div class="input-field col s12 m6">
+                        <input placeholder="weight training" id="type" type="text" class="validate">
+                        <label for="type">Type</label>
+                </div>
+                <div class="row">
+                    <div class="input-field col s12 m6">
+                        <input placeholder="Home" id="location" type="text" class="validate">
+                        <label for="location">Location</label>
+                    </div>
+                    <div class="input-field col s12 m6">
+                        <input placeholder="30" id="duration" type="number" class="validate">
+                        <label for="duration">Duration</label>
+                </div>
+                <div class="row">
+                    <div class="input-field col s12">
+                        <textarea id="description" class="materialize-textarea"></textarea>
+                        <label for="description">Exercise description</label>
                     </div>
                 </div>
                 <div class="row">
-                    Type:
-                    <div class="input-field inline">
-                        <input id="type" name="type" type="text">
-                    </div> 
-                </div>
-                <div class="row">
-                    Location:
-                    <div class="input-field inline">
-                        <input id="location" name="location" type="text">
+                    <div class="input-field col s12">
+                        <input id="tags" type="text" placeholder="weight:20lbs, reps: 5">
+                        <label for="tags">Tags (seperate with commas)</label>
                     </div>
                 </div>
-                <div class="row">
-                    Duration(m):
-                    <div class="input-field inline">
-                        <input id="duration" name="duration" type="number">
-                    </div>
-                </div>
-                <div class="row">
-                    Weight(lbs):
-                    <div class="input-field inline">
-                        <input id="weight" name="weight" type="number">
-                    </div>
-                </div>
-                <div class="row">
-                    Sets:
-                    <div class="input-field inline">
-                        <input id="sets" name="sets" type="number">
-                    </div>
-                </div>
-                <div class="row">
-                    Reps:
-                    <div class="input-field inline">
-                        <input id="reps" name="reps" type="number">
-                    </div>
-                </div>
-                <div class="row">
-                    Distance(mi):
-                    <div class="input-field inline">
-                        <input id="distance" name="reps" type="number">
-                    </div>
-                </div>                
             <div class="modal-footer">
             <a href="#!" class="modal-close waves-effect waves-green btn-flat save-drill">Save</a>
             </div>

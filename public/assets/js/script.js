@@ -59,10 +59,8 @@ $('.save-drill').on("click", function (){
         type: $('#type').val(),
         location: $('#location').val(),
         duration: $('#duration').val(),
-        weight: $('#weight').val(),
-        sets: $('#sets').val(),
-        reps: $('#reps').val(),
-        distance: $('#distance').val()
+        description: $('#description').val(),
+        tags:$('#tags').val().split(',')
         }
     }
     console.log(drill)

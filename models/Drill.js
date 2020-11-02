@@ -7,10 +7,8 @@ const DrillSchema = new Schema({
   type: String,
   location: String,
   duration: String,
-  weight: Number,
-  sets: Number,
-  reps: Number,
-  distance:Number
+  description: String,
+  tags:[]
 });
 
 const Drill = mongoose.model("Drill", DrillSchema);
