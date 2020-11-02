@@ -15,6 +15,18 @@ $('.create-workout').on("click", function (){
         }
     })
 })
+
+$('.delete-workout').on("click", function (){
+    const workoutId = $(this).attr('data-workoutid')
+    $.ajax({
+        url:`/deleteworkout/${workoutId}`,
+        type:"DELETE",
+        success: function(data) {
+            window.location.href = "/"
+            console.log(data)
+        }
+    })
+})
 $('.create-drill').on("click", function (){
     const workoutId = $(this).attr('data-workoutid')
     $('.save-drill').removeAttr('data-drillId') 

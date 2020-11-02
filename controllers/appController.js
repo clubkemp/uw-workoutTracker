@@ -86,5 +86,17 @@ router.delete("/deletedrill/:id", (req,res) =>{
    })
 })
 
+router.delete("/deleteworkout/:id", (req,res) =>{
+   console.log(req.params.id)
+   db.Workout.findByIdAndDelete(req.params.id)
+   .then((result =>{
+      res.status(200).send("workout delete")
+   }))
+   .catch(err =>{
+      res.status(500).send(err)
+   })
+})
+
+
 
 module.exports = router;
