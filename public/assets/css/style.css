@@ -1,8 +1,13 @@
-.card-wrapper{
-  
+.banner {
+  font-family: 'Lobster', cursive;
+  background-color: #E4E4E4;
+  width: 100%;
 }
 .card-panel {
   max-width: 300px;
   border-radius: 5%;
   margin: .5em auto
+}
+.container {
+  font-family: 'Poppins', sans-serif;
 }
