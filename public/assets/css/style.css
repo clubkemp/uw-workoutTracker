@@ -1,24 +1,34 @@
+/* top banner */
 .banner {
   font-family: 'Lobster', cursive;
   background-color: #E4E4E4;
   width: 100%;
 }
+/* exercise cards */
 .card-panel {
   max-width: 300px;
   border-radius: 5%;
 }
+/* overall content in body */
 .container {
   font-family: 'Poppins', sans-serif;
 }
+/*  */
 .delete-workout{
   margin-top: 20px;
 }
-
+.workout{
+  background-color: #F7F7F7;
+  padding:10px;
+  border-radius: 3%;
+}
+/* keeps the add workout button in line */
 @media only screen and (min-width: 600px) {
   .btn-floating{
     margin-top: 50px;
   }
 }
+/* keeps the card centered down to mobile size */
 @media only screen and (max-width: 800px) {
   .card-panel {
     margin: .5em auto
