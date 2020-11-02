@@ -1,3 +1,5 @@
+//NOTE: Drills are exercises on the frontend, so exercise and drill are the same thing
+
 // event listener create workout button 
 $('.create-workout').on("click", function (){
     //grab the value out of the input field

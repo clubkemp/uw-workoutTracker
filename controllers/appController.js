@@ -1,3 +1,5 @@
+//NOTE: Drills are exercises on the frontend
+
 const express = require("express");
 const router = express.Router();
 const db = require("../models");
@@ -60,22 +62,31 @@ router.post("/createworkout", (req, res) =>{
 
 // update a drill
 router.put("/updatedrill",(req,res) =>{
+   // grab the updated drill data from req.body
    const drillData = req.body.data
+   // grab the drill id we are targeting
    const drillId = req.body.drillId
-   console.log(req.body)
-   console.log(drillData);
-   console.log(drillId)
+   // find drill and feed it new data
+   // we don't need to associate the exercise because upon creation we already do that
    db.Drill.findByIdAndUpdate(drillId, drillData,{new:true})
    .then((result =>{
       res.status(200).send("exercise updated")
    }))
+   .catch(err =>{
+      res.status(500).send(err)
+   })
 })
 
+// route for creating drill
 router.post("/createdrill", (req, res) =>{
+   // grab new drill data from req.body
    const drillData = req.body.data
+   // grab the workoutId we are going to associate it to
    const workoutId = req.body.workoutId
+   // create the drill with req.body data
    db.Drill.create(drillData)
     .then(drill =>{
+      //  after the drill is created, find the workout and associated it
       db.Workout.findByIdAndUpdate(workoutId, { $push: { drill: drill._id } }, { new: true })
       .then((result =>{
          res.status(200).send("exercise created")
@@ -87,8 +98,10 @@ router.post("/createdrill", (req, res) =>{
    })
 })
 
+// deleting a drill
 router.delete("/deletedrill/:id", (req,res) =>{
-   console.log(req.params.id)
+   // takes in the id as a req.parms
+   // find an delete
    db.Drill.findByIdAndDelete(req.params.id)
    .then((result =>{
       res.status(200).send("exercise delete")
@@ -97,9 +110,10 @@ router.delete("/deletedrill/:id", (req,res) =>{
       res.status(500).send(err)
    })
 })
-
+// delete a workout
 router.delete("/deleteworkout/:id", (req,res) =>{
-   console.log(req.params.id)
+   // takes in the id as a req.parms
+   // find an delete
    db.Workout.findByIdAndDelete(req.params.id)
    .then((result =>{
       res.status(200).send("workout delete")
@@ -109,6 +123,5 @@ router.delete("/deleteworkout/:id", (req,res) =>{
    })
 })
 
-
-
+// export the routes for use in the server.js
 module.exports = router;
