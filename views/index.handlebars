@@ -3,7 +3,7 @@
         <h5>Create a new workout</h5>
         <input placeholder="Hella cardio" type="text" class="create-workout-input">
     </div>
-    <a class="btn-floating btn-large waves-effect waves-light yellow col-1 create-workout"><i class="material-icons black-text">add</i></a>
+    <a class="btn-floating btn-large waves-effect waves-light light-blue col-1 create-workout"><i class="material-icons black-text">add</i></a>
 
 </div>
 {{#each workout}}
@@ -12,13 +12,19 @@
         <div class="row workout" id={{_id}}>
             <div class="col-12">
                 <div class="row">
-                    <div class="col">
+                    <div class="col s11">
                         <h3>{{name}}</h3>
-                        <a class="waves-effect waves-light btn create-drill yellow black-text" data-workoutid={{_id}}>New Exercise</a>
-
+                    </div>
+                    <div class="col s1">
+                        <a class="btn-small yellow delete-workout"data-workoutid={{_id}}><i class="material-icons black-text">delete</i></a>
                     </div>
                 </div>
                 <div class="row">
+                    <div class="col">
+                        <a class="waves-effect waves-light btn create-drill light-blue black-text" data-workoutid={{_id}}>New Exercise</a>
+                    </div>
+                </div>
+                <div class="row">   
                 {{#each drill}} 
                 <div class="col s12 m5 card-wrapper">
                     <div class="card-panel teal">
@@ -38,7 +44,7 @@
                         </span>
                         <br>
                         <a class="waves-effect waves-teal btn-flat modal-trigger edit-drill blue" data-drillid={{_id}}>Edit</a>
-                        <a class="waves-effect waves-teal btn-flat delete-drill light-blue" data-drillid={{_id}}>delete</a>
+                        <a class="waves-effect waves-teal btn-flat delete-drill yellow" data-drillid={{_id}}>delete</a>
                     </div>
                 </div>
                 {{/each}}  
