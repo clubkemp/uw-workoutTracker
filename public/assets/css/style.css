@@ -1,4 +1,8 @@
+.card-wrapper{
+  
+}
 .card-panel {
   max-width: 300px;
   border-radius: 5%;
+  margin: .5em auto
 }

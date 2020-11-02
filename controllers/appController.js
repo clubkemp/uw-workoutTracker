@@ -27,14 +27,12 @@ router.post("/createworkout", async (req, res) =>{
       workoutId = workout[0]._id
       console.log(`workoutid ${workoutId}`)
       db.Drill.create({
-         name: "exercise name?",
-         type: "what are you doing?",
-         location: "place of exercise?",
-         duration: 0,
-         weight: 0,
-         sets: 0,
-         reps: 0,
-         distance:0
+         name: "My first Exercise",
+         type: "Warmup",
+         location: "Wherever",
+         duration: 5,
+         description:"You got this! Runners lunge 60seconds on each side. Follow with 2 minutes of sun-salutations. Finish with 1 minute jumping jacksThis is your first exercise in your workout. Not feeling the warmup, that's fine use this card as a template to start building your very own exercises",
+         tags:["warmup", "yoga", "feel-good"]
        })
        .then(drill =>{
          console.log(`${drill._id}`)
