@@ -12,8 +12,13 @@ const WorkoutSchema = new Schema({
       type: Schema.Types.ObjectId,
       ref: "Drill"
     }
-  ]
-});
+  ],
+  
+},
+{
+  timestamps: true 
+}
+);
 
 const Workout = mongoose.model("Workout", WorkoutSchema);
 

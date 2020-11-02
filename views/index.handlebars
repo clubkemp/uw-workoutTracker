@@ -1,38 +1,43 @@
+{{!-- create workout section --}}
 <div class="row">
     <div class="input-field col s12 m6">
         <h5>Create a new workout</h5>
         <input placeholder="Hella cardio" type="text" class="create-workout-input">
     </div>
-    <a class="btn-floating btn-large waves-effect waves-light light-blue col-1 create-workout"><i class="material-icons black-text">add</i></a>
-
+    <a class="btn-floating btn-large waves-effect waves-light light-blue col-1 create-workout">
+        <i class="material-icons black-text">add</i></a>
 </div>
+{{!-- for each workout object create a section to fill with drills --}}
 {{#each workout}}
-    <div class="divider"></div>
-    <div class="section">
-        <div class="row workout" id={{_id}}>
-            <div class="col-12">
-                <div class="row">
-                    <div class="col s11">
-                        <h3>{{name}}</h3>
-                    </div>
-                    <div class="col s1">
-                        <a class="btn-small yellow delete-workout"data-workoutid={{_id}}><i class="material-icons black-text">delete</i></a>
-                    </div>
+<div class="section">
+    <div class="row workout" id={{_id}}>
+        <div class="col-12">
+            <div class="row">
+                <div class="col s11">
+                    <h3>{{name}}</h3>
                 </div>
-                <div class="row">
-                    <div class="col">
-                        <a class="waves-effect waves-light btn create-drill light-blue black-text" data-workoutid={{_id}}>New Exercise</a>
-                    </div>
+                <div class="col s1">
+                    <a class="btn-small yellow delete-workout" data-workoutid={{_id}}><i
+                            class="material-icons black-text">delete</i></a>
                 </div>
-                <div class="row">   
-                {{#each drill}} 
+            </div>
+            <div class="row">
+                <div class="col">
+                    <a class="waves-effect waves-light btn create-drill light-blue black-text"
+                        data-workoutid={{_id}}>New Exercise</a>
+                </div>
+            </div>
+            <div class="row">
+                {{!-- inside of each workout, build the cards from the drill arrays --}}
+                {{#each drill}}
                 <div class="col s12 m5 card-wrapper">
                     <div class="card-panel teal">
                         <h5 class="white-text">{{name}}</h5>
+                        {{!-- there are tags inside of the drills as well --}}
                         {{#each tags}}
-                            <div class="chip">
-                                {{this}}
-                            </div>
+                        <div class="chip">
+                            {{this}}
+                        </div>
                         {{/each}}
                         <span class="white-text">
                             <ul>
@@ -43,16 +48,16 @@
                             <p>{{description}}</p>
                         </span>
                         <br>
-                        <a class="waves-effect waves-teal btn-flat modal-trigger edit-drill blue" data-drillid={{_id}}>Edit</a>
+                        <a class="waves-effect waves-teal btn-flat modal-trigger edit-drill blue"
+                            data-drillid={{_id}}>Edit</a>
                         <a class="waves-effect waves-teal btn-flat delete-drill yellow" data-drillid={{_id}}>delete</a>
                     </div>
                 </div>
-                {{/each}}  
+                {{/each}}
             </div>
-            </div>    
         </div>
     </div>
-    
+</div>
+
 {{/each}}
-        </div>
-        
+</div>
